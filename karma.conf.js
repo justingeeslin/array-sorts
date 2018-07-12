@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'browserify'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -29,16 +29,9 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'tests/*.js': ['browserify'],
-      'index.js': ['browserify'],
+
     },
 
-    browserify: {
-        debug: true,
-        transform: [
-          istanbul({})
-        ]
-    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -65,7 +58,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DISABLE,
+    logLevel: config.LOG_INFO,
 
     browserConsoleLogOptions: {level: "info", format: "%b %T: %m", terminal: true},
 
