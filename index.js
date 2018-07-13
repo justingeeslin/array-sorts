@@ -13,6 +13,42 @@ Object.defineProperty(Array.prototype, 'cost', {
   writable: true
 });
 
+Array.prototype.minIndex = function() {
+  var currentMin;
+  var currentMinIndex;
+  for(var i = 0; i < this.length; i++) {
+
+    if (currentMin === undefined || currentMin > this[i]) {
+      currentMin = this[i];
+      currentMinIndex = i;
+    }
+
+    cost++;
+  }
+
+  return currentMinIndex;
+}
+
+Array.prototype.selectionSort = function() {
+
+  for(var i = 0; i < this.length; i++) {
+
+    var unsortedPartition = this.slice(i)
+    // Min Index of this, adding i so that it is NOT the index of unsortedPartition.
+    var minIndex = unsortedPartition.minIndex() + i;
+    console.log('From ' + i + ' to the end, ' + unsortedPartition + ' ,' + this[minIndex] + ' is the smallest value. Swap ' + this[i] + ' and ' + this[minIndex] + '.');
+
+    // Swap i and the smallest element; its a way of moving the smallest element to the beginning.
+    var temp = this[i];
+    this[i] = this[minIndex];
+    this[minIndex] = temp;
+
+    cost++;
+  }
+
+  return this;
+}
+
 Array.prototype.treeSort = function() {
   // Because using `this` can be tricky.
   var self = this;
