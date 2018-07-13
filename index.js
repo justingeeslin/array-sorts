@@ -1,15 +1,3 @@
-//Array.prototype.sort is default.
-
-// Let's make these sort functions measurable
-// Input size
-// Object.defineProperty(Array.prototype, 'n', {
-//   value: 0,
-//   writable: true
-// });
-
-// Global variable, cost.
-cost = 0
-
 Array.prototype.minIndex = function() {
   var currentMin;
   var currentMinIndex;

@@ -1,3 +1,6 @@
+// Global variable, cost.
+cost = 0
+
 describe('TreeSort', function() {
 
   beforeEach(function () {
