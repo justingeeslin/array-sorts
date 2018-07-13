@@ -7,11 +7,8 @@
 //   writable: true
 // });
 
-// Cost, not enumerable by default, hides cost from array eqivalence. TODO make writable without being enumerable
-Object.defineProperty(Array.prototype, 'cost', {
-  value: 0,
-  writable: true
-});
+// Global variable, cost.
+cost = 0
 
 Array.prototype.treeSort = function() {
   // Because using `this` can be tricky.
@@ -34,7 +31,7 @@ Array.prototype.treeSort = function() {
   function placeNode(node, nodeToInsert) {
     // Increment cost by one for each iteration.
     console.log('Placing a node. Cost: 1')
-    self.cost++;
+    cost++;
     // If the child is less than (or equal to) the parent ..
     if (node.item >= nodeToInsert.item) {
       // ...insert to the left
@@ -65,7 +62,7 @@ Array.prototype.treeSort = function() {
   var tree;
 
   for(var i = 0; i < this.length; i++) {
-    self.cost++;
+    cost++;
     // Create a new node to insert.
     var aNode = new BinaryNode();
     console.log('Creating a node with value ' + this[i]);
@@ -84,7 +81,7 @@ Array.prototype.treeSort = function() {
   //Traverse the tree transforming back into an array
   var sortedNumbers = [];
   function visitNode(node) {
-    self.cost++
+    cost++
     console.log('Visiting ', node.item);
 
     // Visit left children because they are less than and push them
