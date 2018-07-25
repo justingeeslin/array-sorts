@@ -8,7 +8,7 @@ describe('TreeSort', function() {
     cost = 0;
   })
 
-  it('should be correct, that is, matching Array\'s native sort()', function() {
+  it('should be correctly sorted, that is, matching Array\'s native sort()', function() {
     var theArray = [2,4,6,9,2,4];
 
     // Array sorted natively; remove additional properties.
@@ -32,7 +32,7 @@ describe('Find index of minimum value', function() {
 
 describe('SelectionSort', function() {
 
-  it('should be correct, that is, matching Array\'s native sort()', function() {
+  it('should be correctly sorted, that is, matching Array\'s native sort()', function() {
     var theArray = [2,4,6,9,2,4];
 
     // Array sorted natively; remove additional properties.
@@ -44,7 +44,7 @@ describe('SelectionSort', function() {
     console.log('Selection Sort cost:', cost);
   })
 
-  it('should be correct for Z4 reversed, that is, matching Array\'s native sort()', function() {
+  it('should be correctly sorted for Z4 reversed, that is, matching Array\'s native sort()', function() {
     var theArray = [4,3,2,1,0];
 
     // Array sorted natively; remove additional properties.
