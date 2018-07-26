@@ -22,6 +22,11 @@ describe('TreeSort', function() {
 
 describe('Find index of minimum value', function() {
 
+  beforeEach(function () {
+    //Reset cost to zero
+    cost = 0;
+  })
+
   it('should find the correct minimum value\'s index', function() {
     var theArray = [0,2,3,4,-4];
 
@@ -31,6 +36,11 @@ describe('Find index of minimum value', function() {
 })
 
 describe('SelectionSort', function() {
+
+  beforeEach(function () {
+    //Reset cost to zero
+    cost = 0;
+  })
 
   it('should be correctly sorted, that is, matching Array\'s native sort()', function() {
     var theArray = [2,4,6,9,2,4];
