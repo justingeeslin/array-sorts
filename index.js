@@ -126,3 +126,71 @@ Array.prototype.treeSort = function() {
   return sortedNumbers;
 
 }
+
+Array.prototype.mergeSort = function() {
+  console.log('Sorting:', this);
+  cost++;
+
+  if (this.length > 2) {
+    // Break it apart
+
+    // Choose a pivot
+    var pivotIndex = Math.floor(this.length / 2);
+    var pivot = this[pivotIndex];
+
+    var leftSection = this.slice(0, pivotIndex+1);
+    var rightSection = this.slice(pivotIndex+1);
+
+    console.log('Left section', leftSection)
+    console.log('right section', rightSection)
+
+    leftSection = leftSection.mergeSort();
+    rightSection = rightSection.mergeSort();
+
+    console.log('Merging the sections', leftSection, rightSection);
+    // Merge
+    var mergedArr = []
+    while (leftSection.length > 0 || rightSection.length > 0) {
+      cost++;
+      var l = leftSection.shift();
+      var r = rightSection.shift();
+
+      // When one array is longer than the other, use the merged array and make the comparison on these elements
+      if (typeof l === "undefined") {
+        l = mergedArr.pop();
+      }
+      if (typeof r === "undefined") {
+        //
+        r = mergedArr.pop();
+      }
+
+      if (l > r) {
+        mergedArr.push(r)
+        mergedArr.push(l)
+      }
+      else if (l < r) {
+        mergedArr.push(l)
+        mergedArr.push(r)
+      }
+      else {
+        if (typeof l !== "undefined") { mergedArr.push(l) }
+        if (typeof r !== "undefined") { mergedArr.push(r) }
+      }
+
+    }
+    console.log('Merge result: ', mergedArr)
+    return mergedArr;
+  }
+  else {
+    if (this[0] > this[1]) {
+      // Swap
+      var temp = this[0];
+      this[0] = this[1];
+      this[1] = temp;
+    }
+  }
+
+  return this;
+
+
+}

@@ -57,3 +57,24 @@ describe('SelectionSort', function() {
   })
 
 });
+
+describe('Merge Sort', function() {
+
+  beforeEach(function () {
+    //Reset cost to zero
+    cost = 0;
+  })
+
+  it('should be correct', function() {
+    var theArray = [2,6,5,1,8];
+
+    // Array sorted natively; remove additional properties.
+    var sortedArray = Object.values(theArray).sort();
+    var sorted = theArray.mergeSort();
+    // expect(theArray.quickSort()).toEqual(sortedArray);
+    console.log('Sorted', sorted);
+    console.log('cost', cost);
+    expect(sorted).toEqual(sortedArray);
+  })
+
+})
