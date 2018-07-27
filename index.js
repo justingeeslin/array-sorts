@@ -204,18 +204,27 @@ Array.prototype.quickSort = function() {
   var leftSection = this.slice(0, pivotIndex);
   var rightSection = this.slice(pivotIndex+1);
 
-  for(var i = 0; i < leftSection.length; i++) {
+  // Sometimes we pop from the array so we don't always i++.
+  for(var i = 0; i < leftSection.length; i) {
     if (leftSection[i] > pivot) {
       var elementToMove = leftSection.splice(i, 1)
       console.log('Moving ' + elementToMove + " to the right.")
       rightSection.push(elementToMove[0])
     }
+    else {
+      // Move on to the next one.
+      i++
+    }
   }
-  for(var i = 0; i < rightSection.length; i++) {
+  for(var i = 0; i < rightSection.length; i) {
     if (rightSection[i] < pivot) {
       var elementToMove = rightSection.splice(i, 1)
       console.log('Moving ' + elementToMove + " to the left.")
       leftSection.push(elementToMove[0])
+    }
+    else {
+      // Move on to the next one.
+      i++
     }
   }
 
