@@ -54,7 +54,7 @@ Array.prototype.treeSort = function() {
   // A tree traversing subroutine, finding the right place to insert the new node.
   function placeNode(node, nodeToInsert) {
     // Increment cost by one for each iteration.
-    console.log('Placing a node. Cost: 1')
+    // console.log('Placing a node. Cost: 1')
     cost++;
     // If the child is less than (or equal to) the parent ..
     if (node.item >= nodeToInsert.item) {
@@ -62,7 +62,7 @@ Array.prototype.treeSort = function() {
 
       // If the node does not have a left child..
       if (typeof node.leftChild === "undefined") {
-        console.log('Assigning ' + nodeToInsert.item + ' as left child to ' + node.item)
+        // console.log('Assigning ' + nodeToInsert.item + ' as left child to ' + node.item)
         node.leftChild = nodeToInsert;
       }
       else {
@@ -89,7 +89,7 @@ Array.prototype.treeSort = function() {
     cost++;
     // Create a new node to insert.
     var aNode = new BinaryNode();
-    console.log('Creating a node with value ' + this[i]);
+    //console.log('Creating a node with value ' + this[i]);
     aNode.item = this[i];
 
     if (i === 0) {
@@ -106,7 +106,7 @@ Array.prototype.treeSort = function() {
   var sortedNumbers = [];
   function visitNode(node) {
     cost++
-    console.log('Visiting ', node.item);
+    //consle.log(('Visiting ', node.item);)
 
     // Visit left children because they are less than and push them
     if (typeof node.leftChild !== "undefined") {
@@ -128,7 +128,7 @@ Array.prototype.treeSort = function() {
 }
 
 Array.prototype.mergeSort = function() {
-  console.log('Sorting:', this);
+  //consle.log(('Sorting:', this);)
   cost++;
 
   if (this.length > 2) {
@@ -141,13 +141,13 @@ Array.prototype.mergeSort = function() {
     var leftSection = this.slice(0, pivotIndex+1);
     var rightSection = this.slice(pivotIndex+1);
 
-    console.log('Left section', leftSection)
-    console.log('right section', rightSection)
+    //consle.log('Left section', leftSection)
+    //consle.log('right section', rightSection)
 
     leftSection = leftSection.mergeSort();
     rightSection = rightSection.mergeSort();
 
-    console.log('Merging the sections', leftSection, rightSection);
+    //consle.log('Merging the sections', leftSection, rightSection);
     // Merge
     var mergedArr = []
     while (leftSection.length > 0 || rightSection.length > 0) {
@@ -178,7 +178,7 @@ Array.prototype.mergeSort = function() {
       }
 
     }
-    console.log('Merge result: ', mergedArr)
+    //consle.log('Merge result: ', mergedArr)
     return mergedArr;
   }
   else {
