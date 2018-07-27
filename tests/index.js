@@ -1,6 +1,33 @@
 // Global variable, cost.
 cost = 0
 
+describe('Native Array Sort', function() {
+  beforeAll(function() {
+    //Reset cost to zero
+    cost = 0;
+  })
+
+  it('should be correctly sorted', function() {
+    var anArray = [2,4,6,9,2,4];
+    performance.mark('nativeSort-start');
+    var sortedArray = anArray.sort()
+    performance.mark('nativeSort-end');
+
+    performance.measure(
+      "nativeSort",
+      "nativeSort-start",
+      "nativeSort-end"
+    );
+
+    var measures = performance.getEntriesByName("nativeSort");
+    var measure = measures[0];
+    console.log('Performance measure of Native sort:', measure.duration );
+
+    expect(sortedArray).toEqual([2,2,4,4,6,9]);
+
+  })
+})
+
 describe('TreeSort', function() {
 
   beforeEach(function () {
@@ -14,8 +41,22 @@ describe('TreeSort', function() {
     // Array sorted natively; remove additional properties.
     var sortedArray = Object.values(theArray).sort();
 
-    expect(theArray.treeSort()).toEqual(sortedArray);
+    performance.mark('treeSort-start');
+    var treeSorted = theArray.treeSort()
+    performance.mark('treeSort-end');
+
     console.log('Tree Sort cost:', cost);
+    expect(treeSorted).toEqual(sortedArray);
+
+    performance.measure(
+      "treeSort",
+      "treeSort-start",
+      "treeSort-end"
+    );
+
+    var measures = performance.getEntriesByName("treeSort");
+    var measure = measures[0];
+    console.log('Performance measure of Tree sort:', measure.duration );
   })
 
 });
