@@ -194,3 +194,39 @@ Array.prototype.mergeSort = function() {
 
 
 }
+
+Array.prototype.quickSort = function() {
+  console.log('Sorting:', this);
+  // Choose a pivot
+  var pivotIndex = Math.floor(this.length / 2);
+  var pivot = this[pivotIndex];
+
+  var leftSection = this.slice(0, pivotIndex);
+  var rightSection = this.slice(pivotIndex+1);
+
+  for(var i = 0; i < leftSection.length; i++) {
+    if (leftSection[i] > pivot) {
+      var elementToMove = leftSection.splice(i, 1)
+      console.log('Moving ' + elementToMove + " to the right.")
+      rightSection.push(elementToMove[0])
+    }
+  }
+  for(var i = 0; i < rightSection.length; i++) {
+    if (rightSection[i] < pivot) {
+      var elementToMove = rightSection.splice(i, 1)
+      console.log('Moving ' + elementToMove + " to the left.")
+      leftSection.push(elementToMove[0])
+    }
+  }
+
+  if (leftSection.length > 1) {
+    leftSection = leftSection.quickSort();
+  }
+  if (rightSection.length > 1) {
+    rightSection = rightSection.quickSort();
+  }
+
+  console.log('Returning: ', leftSection.concat(pivot, rightSection))
+  return leftSection.concat(pivot, rightSection);
+
+}
