@@ -59,6 +59,83 @@ describe('TreeSort', function() {
     console.log('Performance measure of Tree sort:', measure.duration );
   })
 
+  it('should sort correctly using custom comparator function', function() {
+    var theArray = [
+      {
+        color: 'red',
+        size: 's',
+      },
+      {
+        color: 'green',
+        size: 'l',
+      },
+      {
+        color: 'red',
+        size: 'l',
+      },
+      {
+        color: 'blue',
+        size: 's',
+      },
+      {
+        color: 'blue',
+        size: 'm',
+      },
+    ];
+
+    var propertyPriority = {
+      'color': '5',
+      'print': '2',
+      'size': '1'
+    }
+
+    var rgbCompare = function(a, b) {
+      var aWeight = 0;
+      var bWeight = 0;
+
+      if (a.color === 'red' && b.color !== 'red') {
+        aWeight -= propertyPriority['color'];
+      }
+      else if (a.color === 'green' && b.color === 'blue') {
+        aWeight -= propertyPriority['color'];
+      }
+      else if (a.color === 'green' && b.color === 'red') {
+        aWeight += propertyPriority['color'];
+      }
+      // anything else goes last
+      else {
+        aWeight += propertyPriority['color'];
+      }
+
+      if (a.size === 's') {
+        aWeight -= propertyPriority['size'];
+      }
+
+      return aWeight < bWeight;
+    }
+
+    var treeSorted = theArray.treeSort(rgbCompare)
+
+    console.log('Items sorted', treeSorted);
+
+    var previousItem = treeSorted[0];
+    for( var i in treeSorted) {
+      var item = treeSorted[i];
+      if (item.color == 'red') {
+        expect(previousItem.color === 'red').toBe(true, 'Found a red after ' + previousItem.color)
+      }
+      if (item.color == 'green') {
+        expect(previousItem.color === 'red' || previousItem.color === 'green').toBe(true)
+      }
+      if (item.color == 'blue') {
+        expect(previousItem.color === 'green' || previousItem.color === 'blue').toBe(true)
+      }
+      previousItem = item;
+    }
+
+
+  })
+
 });
 
 describe('Find index of minimum value', function() {
